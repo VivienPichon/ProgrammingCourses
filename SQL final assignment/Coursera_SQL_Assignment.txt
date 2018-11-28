@@ -1,0 +1,805 @@
+Data Scientist Role Play: Profiling and Analyzing the Yelp Dataset Coursera Worksheet
+
+This is a 2-part assignment. In the first part, you are asked a series of questions that will help you profile and understand the data just like a data scientist would. For this first part of the assignment, you will be assessed both on the correctness of your findings, as well as the code you used to arrive at your answer. You will be graded on how easy your code is to read, so remember to use proper formatting and comments where necessary.
+
+In the second part of the assignment, you are asked to come up with your own inferences and analysis of the data for a particular research question you want to answer. You will be required to prepare the dataset for the analysis you choose to do. As with the first part, you will be graded, in part, on how easy your code is to read, so use proper formatting and comments to illustrate and communicate your intent as required.
+
+For both parts of this assignment, use this "worksheet." It provides all the questions you are being asked, and your job will be to transfer your answers and SQL coding where indicated into this worksheet so that your peers can review your work. You should be able to use any Text Editor (Windows Notepad, Apple TextEdit, Notepad ++, Sublime Text, etc.) to copy and paste your answers. If you are going to use Word or some other page layout application, just be careful to make sure your answers and code are lined appropriately.
+In this case, you may want to save as a PDF to ensure your formatting remains intact for you reviewer.
+
+
+
+Part 1: Yelp Dataset Profiling and Understanding
+
+1. Profile the data by finding the total number of records for each of the tables below:
+	
+i. Attribute table = 10000
+ii. Business table = Data Scientist Role Play: Profiling and Analyzing the Yelp Dataset Coursera Worksheet
+
+This is a 2-part assignment. In the first part, you are asked a series of questions that will help you profile and understand the data just like a data scientist would. For this first part of the assignment, you will be assessed both on the correctness of your findings, as well as the code you used to arrive at your answer. You will be graded on how easy your code is to read, so remember to use proper formatting and comments where necessary.
+
+In the second part of the assignment, you are asked to come up with your own inferences and analysis of the data for a particular research question you want to answer. You will be required to prepare the dataset for the analysis you choose to do. As with the first part, you will be graded, in part, on how easy your code is to read, so use proper formatting and comments to illustrate and communicate your intent as required.
+
+For both parts of this assignment, use this "worksheet." It provides all the questions you are being asked, and your job will be to transfer your answers and SQL coding where indicated into this worksheet so that your peers can review your work. You should be able to use any Text Editor (Windows Notepad, Apple TextEdit, Notepad ++, Sublime Text, etc.) to copy and paste your answers. If you are going to use Word or some other page layout application, just be careful to make sure your answers and code are lined appropriately.
+In this case, you may want to save as a PDF to ensure your formatting remains intact for you reviewer.
+
+
+
+Part 1: Yelp Dataset Profiling and Understanding
+
+1. Profile the data by finding the total number of records for each of the tables below:
+	
+i. Attribute table = 10000
+ii. Business table = 10000
+iii. Category table = 10000
+iv. Checkin table = 10000
+v. elite_years table = 10000
+vi. friend table = 10000
+vii. hours table = 10000
+viii. photo table = 10000
+ix. review table = 10000
+x. tip table = 10000
+xi. user table = 10000
+	
+
+
+2. Find the total distinct records by either the foreign key or primary key for each table. If two foreign keys are listed in the table, please specify which foreign key.
+
+i. Business = 10000
+ii. Hours = 1562
+iii. Category = 2643
+iv. Attribute = 1115
+v. Review = 10000
+vi. Checkin = 493
+vii. Photo = 10000
+viii. Tip = 537 (using user_id)
+ix. User = 10000
+x. Friend = 11
+xi. Elite_years = 2780
+
+Note: Primary Keys are denoted in the ER-Diagram with a yellow key icon.	
+
+
+
+3. Are there any columns with null values in the Users table? Indicate "yes," or "no."
+
+	Answer: no
+	
+	
+	SQL code used to arrive at answer:
+
+SELECT *
+
+FROM user
+
+WHERE name IS NULL
+
+OR id IS NULL
+
+OR review_count IS NULL
+
+OR yelping_since IS NULL
+
+OR useful IS NULL
+
+OR funny IS NULL
+
+OR cool IS NULL
+
+OR fans IS NULL
+
+OR average_stars IS NULL
+
+OR compliment_hot IS NULL
+
+OR compliment_more IS NULL
+
+OR compliment_profile IS NULL
+
+OR compliment_cute IS NULL
+
+OR compliment_list IS NULL
+
+OR compliment_note IS NULL
+
+OR compliment_plain IS NULL
+
+OR compliment_cool IS NULL
+
+OR compliment_funny IS NULL
+
+OR compliment_writer IS NULL
+
+OR compliment_photos IS NULL
+	
+	
+
+	
+4. For each table and column listed below, display the smallest (minimum), largest (maximum), and average (mean) value for the following fields:
+
+	i. Table: Review, Column: Stars
+	
+		min: 1		max: 5		avg: 3.7082
+		
+	
+	ii. Table: Business, Column: Stars
+	
+		min:1		max:5		avg:3.6549
+		
+	
+	iii. Table: Tip, Column: Likes
+	
+		min:0		max:2		avg:0.0144
+		
+	
+	iv. Table: Checkin, Column: Count
+	
+		min:1		max:53		avg:1.9414
+		
+	
+	v. Table: User, Column: Review_count
+	
+		min:0		max:2000		avg:24.2995
+		
+
+
+5. List the cities with the most reviews in descending order:
+
+	SQL code used to arrive at answer:
+
+SELECT city
+
+, review_count
+
+FROM business 
+GROUP BY city
+
+ORDER BY review_count DESC
+	
+	
+Copy and Paste the Result Below:
+
++------------------------+--------------+
+| city                   | review_count |
++------------------------+--------------+
+| Woodmere Village       |          242 |
+| Mount Lebanon          |          138 |
+| Charlotte              |          120 |
+| McMurray               |          112 |
+| North York             |          109 |
+| Enterprise             |           89 |
+| Matthews               |           77 |
+| Munroe Falls           |           74 |
+| Ahwatukee              |           69 |
+| Pittsburgh             |           68 |
+| Woodmere               |           68 |
+| Tolleson               |           65 |
+| Pineville              |           63 |
+| Carnegie               |           61 |
+| Macedonia              |           58 |
+| Markham                |           54 |
+| Whitchurch-Stouffville |           52 |
+| Windsor                |           50 |
+| Goodyear               |           49 |
+| Gibsonia               |           45 |
+| Summerlin              |           44 |
+| Peninsula              |           42 |
+| Richfield              |           42 |
+| Dormont                |           40 |
+| nboulder city          |           40 |
++------------------------+--------------+
+(Output limit exceeded, 25 of 362 total rows shown)
+
+	
+6. Find the distribution of star ratings to the business in the following cities:
+
+i. Avon
+
+SQL code used to arrive at answer:
+
+SELECT stars
+
+,
+ review_count
+
+
+FROM business
+
+
+WHERE city = "Avon"
+
+
+Copy and Paste the Resulting Table Below (2 columns – star rating and count):
+
++-------+--------------+
+| stars | review_count |
++-------+--------------+
+|   2.5 |            3 |
+|   4.0 |            4 |
+|   5.0 |            3 |
+|   3.5 |            7 |
+|   1.5 |           10 |
+|   3.5 |           31 |
+|   4.5 |           31 |
+|   3.5 |           50 |
+|   2.5 |            3 |
+|   4.0 |           17 |
++-------+--------------+
+
+
+ii. Beachwood
+
+SQL code used to arrive at answer:
+
+SELECT stars
+
+,
+ review_count
+
+
+FROM business
+
+
+WHERE city = "Beachwood"
+
+Copy and Paste the Resulting Table Below (2 columns – star rating and count):
+	
++-------+--------------+
+| stars | review_count |
++-------+--------------+
+|   3.0 |            8 |
+|   3.0 |            3 |
+|   4.5 |           14 |
+|   5.0 |            6 |
+|   4.0 |           69 |
+|   4.5 |            3 |
+|   5.0 |            4 |
+|   2.0 |            8 |
+|   3.5 |            3 |
+|   3.5 |            3 |
+|   5.0 |            6 |
+|   2.5 |            3 |
+|   5.0 |            3 |
+|   5.0 |            4 |
++-------+--------------+	
+
+
+7. Find the top 3 users based on their total number of reviews:
+		
+	SQL code used to arrive at answer:
+SELECT id
+, name
+, review_count
+FROM user
+ORDER BY review_count DESC
+LIMIT 3
+		
+	Copy and Paste the Result Below:
+		
++------------------------+--------+--------------+
+| id                     | name   | review_count |
++------------------------+--------+--------------+
+| -G7Zkl1wIWBBmD0KRy_sCw | Gerald |         2000 |
+| -3s52C4zL_DHRK0ULG6qtg | Sara   |         1629 |
+| -8lbUNlXVSoXqaRRiHiSNg | Yuri   |         1339 |
++------------------------+--------+--------------+
+
+8. Does posing more reviews correlate with more fans? Yes
+
+	Please explain your findings and interpretation of the results:
+
+The following code classifies each user depending on their review count (high, medium or low number of comments), then returns a table that gives the average number of fans for each group:
+
+SELECT CASE
+
+	WHEN review_count > 1000
+
+	THEN "1-high"
+
+	WHEN review_count < 1000 AND review_count > 150
+
+	THEN "2-medium"
+
+	ELSE "3-low"
+
+	END comm_type
+
+, avg(fans)
+FROM user
+
+GROUP BY comm_type
+
+Returns this table:
+
++-----------+----------------+
+| comm_type |      avg(fans) |
++-----------+----------------+
+| 1-high    |        129.625 |
+| 2-medium  |   25.903030303 |
+| 3-low     | 0.549679155454 |
++-----------+----------------+
+
+As we can see, the "high" users have a lot more comments than the "medium" users, who themselves have more fans than the "low" users.
+We can then deduce that yes, the number of fans is correlated to the number of comments.
+
+9. Are there more reviews with the word "love" or with the word "hate" in them?
+
+	Answer: Yes
+
+	
+	SQL code used to arrive at answer:
+
+SELECT sum(text LIKE "%love%") AS love
+
+, sum(text LIKE "%hate%") AS hate
+
+FROM review
+	
+	
+10. Find the top 10 users with the most fans:
+
+	SQL code used to arrive at answer:
+SELECT id
+
+, name
+
+, fans
+
+FROM user
+
+ORDER BY fans DESC
+
+LIMIT 10
+	
+	Copy and Paste the Result Below:
+
++------------------------+-----------+------+
+| id                     | name      | fans |
++------------------------+-----------+------+
+| -9I98YbNQnLdAmcYfb324Q | Amy       |  503 |
+| -8EnCioUmDygAbsYZmTeRQ | Mimi      |  497 |
+| --2vR0DIsmQ6WfcSzKWigw | Harald    |  311 |
+| -G7Zkl1wIWBBmD0KRy_sCw | Gerald    |  253 |
+| -0IiMAZI2SsQ7VmyzJjokQ | Christine |  173 |
+| -g3XIcCb2b-BD0QBCcq2Sw | Lisa      |  159 |
+| -9bbDysuiWeo2VShFJJtcw | Cat       |  133 |
+| -FZBTkAZEXoP7CYvRV2ZwQ | William   |  126 |
+| -9da1xk7zgnnfO1uTVYGkA | Fran      |  124 |
+| -lh59ko3dxChBSZ9U7LfUw | Lissa     |  120 |
++------------------------+-----------+------+
+	
+	
+11. Is there a strong relationship (or correlation) between having a high number of fans and being listed as "useful" or "funny?" Out of the top 10 users with the highest number of fans, what percent are also listed as “useful” or “funny”?
+
+Key:
+0% - 25% - Low relationship
+26% - 75% - Medium relationship
+76% - 100% - Strong relationship
+	
+	SQL code used to arrive at answer:
+
+SELECT name
+
+, fans
+
+, useful
+
+, funny
+
+FROM user
+
+ORDER BY fans DESC
+
+LIMIT 10
+	
+	Copy and Paste the Result Below:
+
++-----------+------+--------+--------+
+| name      | fans | useful |  funny |
++-----------+------+--------+--------+
+| Amy       |  503 |   3226 |   2554 |
+| Mimi      |  497 |    257 |    138 |
+| Harald    |  311 | 122921 | 122419 |
+| Gerald    |  253 |  17524 |   2324 |
+| Christine |  173 |   4834 |   6646 |
+| Lisa      |  159 |     48 |     13 |
+| Cat       |  133 |   1062 |    672 |
+| William   |  126 |   9363 |   9361 |
+| Fran      |  124 |   9851 |   7606 |
+| Lissa     |  120 |    455 |    150 |
++-----------+------+--------+--------+
+	
+	Please explain your findings and interpretation of the results:
+	There is a strong relationship between being listed as useful and funny and having a high number of fans.
+	Out of the 10 users with the most fans, 9 are highly listed as both being useful and funny.
+	
+	
+
+Part 2: Inferences and Analysis
+
+1. Pick one city and category of your choice and group the businesses in that city or category by their overall star rating. Compare the businesses with 2-3 stars to the businesses with 4-5 stars and answer the following questions. Include your code.
+	
+i. Do the two groups you chose to analyze have a different distribution of hours?
+	I choosed to work on the businesses of the city of Edinburgh. Due to most of the businesses not having their hour included in the dataset, only one business has more than 4 stars, and one has 2-3 stars. They have different opening hours but it is certainly due to their category.
+
+ii. Do the two groups you chose to analyze have a different number of reviews?
+         Yes, as shown here the poorly rated businesses have in general less reviews
+
++---------------+----------+
+|       avg_rev | Stars    |
++---------------+----------+
+| 9.19565217391 | LowStar  |
+| 12.3970588235 | HighStar |
++---------------+----------+
+Code below
+         
+iii. Are you able to infer anything from the location data provided between these two groups? Explain.
+
+I checked if there was a difference of noticeable neighborhood between the best and the poorly rated businesses in Edinburgh.
+For this I show in the following table the total number of businesses and compare it to the number of businesses where anything appeared in the "Neighborhood" column from the business table.
++---------------+---------------+----------+
+| TotalBusiness | NeighborCount | Rating   |
++---------------+---------------+----------+
+|            49 |            37 | LowStar  |
+|           136 |           119 | HighStar |
++---------------+---------------+----------+
+Code below.
+
+There is no noticeable difference between the ratio "TotalBusiness/NeighborCount", then the users rating is not affected by the noticeable neighborhood in Edinburgh.
+
+SQL code used for analysis:
+
+i.
+
+SELECT hours.hours
+
+FROM hours INNER JOIN business
+
+ON business.id = hours.business_id
+
+AND business.city = "Edinburgh"
+
+AND business.stars >= 4
+
+
+SELECT hours.hours
+
+FROM hours INNER JOIN business
+
+ON business.id = hours.business_id
+
+AND business.city = "Edinburgh"
+
+AND business.stars <=3
+
+AND business.stars >=2
+
+
+ii.
+
+SELECT avg (review_count) AS avg_rev
+
+, "LowStar" AS Stars
+
+FROM business
+
+WHERE stars <=3
+
+AND stars >=2
+AND city = "Edinburgh"
+
+
+
+UNION
+
+
+
+SELECT avg (review_count)
+
+, "HighStar"
+
+FROM business
+
+WHERE stars >=4
+
+AND city = "Edinburgh"
+
+
+iii.
+
+SELECT (SELECT count(*)
+
+    FROM business
+
+    WHERE stars >=4
+
+    AND city = "Edinburgh") AS TotalBusiness
+
+, count(*) AS NeighborCount
+
+, "HighStar" AS Rating
+
+FROM business
+
+WHERE stars >=4
+
+AND neighborhood LIKE "_%"
+
+AND city = "Edinburgh"
+
+
+
+UNION
+
+
+SELECT (SELECT count(*)
+
+    FROM business
+
+    WHERE stars <=3
+
+    AND city = "Edinburgh")
+
+, count(*)
+
+, "LowStar"
+FROM business
+
+WHERE stars <=3
+
+AND stars >=2
+AND neighborhood LIKE "_%"
+
+AND city = "Edinburgh"
+		
+		
+2. Group business based on the ones that are open and the ones that are closed. What differences can you find between the ones that are still open and the ones that are closed? List at least two differences and the SQL code you used to arrive at your answer.
+		
+i. Difference 1:
+         The closed businesses have in average less reviews than the open ones.
+
++---------+---------------+
+| is_open |        rating |
++---------+---------------+
+|       0 | 23.1980263158 |
+|       1 | 31.7570754717 |
++---------+---------------+
+Code below
+         
+ii. Difference 2:
+         The open businesses have a lot more pictures shared than the closed ones.
++---------+---------+
+| is_open | Pict_Nb |
++---------+---------+
+|       0 |      66 |
+|       1 |     585 |
++---------+---------+
+Code Below
+         
+SQL code used for analysis:
+i.
+SELECT is_open
+
+,avg(review_count) AS reviews
+
+FROM business
+
+GROUP BY is_open
+	
+ii.
+SELECT business.is_open
+
+,count(photo.id) AS Pict_Nb
+
+FROM business INNER JOIN photo
+
+ON business.id = photo.business_id
+
+GROUP BY is_open
+
+
+	
+3. For this last part of your analysis, you are going to choose the type of analysis you want to conduct on the Yelp dataset and are going to prepare the data for analysis.
+
+Ideas for analysis include: Parsing out keywords and business attributes for sentiment analysis, clustering businesses to find commonalities or anomalies between them, predicting the overall star rating for a business, predicting the number of fans a user will have, and so on. These are just a few examples to get you started, so feel free to be creative and come up with your own problem you want to solve. Provide answers, in-line, to all of the following:
+	
+i. Indicate the type of analysis you chose to do:
+         I will parse out keywords and business attributes for a sentiment analysis on restaurants. The goal of this analysis is to get the general feelings of customers about different restaurants. The conclusions will be correlated with the business attributes in order to find what critera are the most important to the consumers in a restaurant.
+         
+ii. Write 1-2 brief paragraphs on the type of data you will need for your analysis and why you chose that data:
+         I need first to parse the keywords in order deduce the general feeling about a business. On a second time I will need to add the business attribute in order to correlate with it the conclusions of the first part of the analysis.
+
+	For the first part I need to filter the restaurants businesses (category) that have a review count superior to 0 and link it to the text of the reviews. In order to run faster the analysis, only the business id and the comment text will be choosen. The business id is important because it allows to differenciate the different businesses and will make the link with the business attributes in the second part. The review text is the part that will be parsed. No other column is necessary.
+	The full attribute table is the ony thing needed for the second part. Only the restaurants with at least one review will be filtered once again to optimise the runtimme.
+                  
+iii. Output of your finished dataset:
+        Part 1
++------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| business_id            | text                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
++------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 0NDbUCHi9YsRwgG3iZO8Kg | The restaurant has a nice atmosphere with great food, and good service.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | I ordered a lamb biryani. There was a mistake in my order, so I told the manager about it. He apologized for the mistake and offered me another order for free as a compensation, which I gladly accepted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|                        | The manager handle the situation professionally, which I appreciate.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| 1ZnVfS-qP19upP_fwOhZsA | My brother was in town and wanted to get a quick lunch before I had to go into work. Wanted to go into Monta but it was 11 and they weren't open yet, so we stopped in at the Big Wong.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Beef Ramen - for 5 you can get a bowl of ramen (same noodles as used at Monta) and it comes with big chunks of beef. They'll ask you for tendons too and I don't remember if they charge you extra, but I don't think so. Came with chili oil, scallions, and siracha on the side. It was good, and it's exactly what you expect to get, ramen and beef. Great flavor and the broth was well seasoned.                                                                                                                                                                                                                                                                                                                 |
+| 1ZnVfS-qP19upP_fwOhZsA | This restaurant has great service. Their foods are very delicious and not expensive. Thank you!!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| 1veVZUawy7IhIc5oDpRRQA | One of the best places I've ever gone for breakfast. Unassuming and positively delightful. Old school breakfast of two eggs over easy with hash browns.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|                        | Couldn't have been better. I would never go anywhere else in Cleveland.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| 24Td_CQH1bonWKff1rt2vg | Been eating at Matt's Big Breakfast since they were at their original location downtown.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Always busy with a line to get in but great places are like that so if you want to eat quickly go to Dennys so you don't have to wait so long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Everything is made from scratch and fresh. The Waffles are outstanding as are the Griddlecakes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | I am a really big fan of the Big Butter Burger also. The burger is just plain good and when they bring it to you, you will be happy.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | If you can, make sure you get some bacon here which is very good.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Service is good and the new location is spacious compared to the original restaurant.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | What is nice is that the small feel still transferred to the current location.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Would recommend going there either early in the morning or later prior to closing to minimize your wait.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Can't wait to go back!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| 24Td_CQH1bonWKff1rt2vg | I thought the bacon couldn't be topped until I had the jelly that came with my toast. This place is the sh*t. Need to go back when I am hungover to get the best experience. My new favorite breakfast spot.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| 2skQeu3C36VCiB653MIfrw | My husband and I decided to come here for a Saturday date night. When considering our options, we were sold when we saw the bacon board on the menu. It did not disappoint! It was an excellent and delicious start to our nice (giant) dinner.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | For our main course we had the BBQ sampler for two, as well as the shrimp and grits appetizer because I just couldn't help myself! The shrimp and grits were simply glorious. I may have preferred grilled or sautéed shrimp, rather than fried, but the other ingredients did a great job of balancing the richness of the fried shrimp and bacon. Marvelous.                                                                                                                                                                                                                                                                                                                                                         |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | The sampler was very good, but not amazing. I had been particularly looking forward to the turkey, but they had run out (something we weren't told until after the food was delivered and I inquired about it). The hot links were our least favorite - just not our thing, I guess. The pulled pork was pretty good, but the ribs and brisket were definitely the stars, and our favorites by a mile.                                                                                                                                                                                                                                                                                                                 |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Since we brought up the missing turkey,  we were given a cobbler desert for free. That's about as much as I would pay for that dessert - $0 - as it tasted like hot, vaguely-fruity mush with a layer of raw flour on top. Whatever... they don't claim to be dessert experts, so what did I expect? I just know better for next time. ;)                                                                                                                                                                                                                                                                                                                                                                              |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Atmosphere is great - cozy, clean and modern. Just hipster enough to feel cool, but not so much to make you feel uncomfortable if you didn't show up with facial hair or a vintage t-shirt. Service is not as attentive as I would prefer, but most likely due to having too much to do, as opposed to a lack of effort. Everyone was very nice.                                                                                                                                                                                                                                                                                                                                                                       |
+| 2skQeu3C36VCiB653MIfrw | This place is awesome! The service was great and quick; we literally could've gotten out of there in 30 minutes, but the vibe was so fresh that we decided to stay for a couple more drinks! Love it!!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| 2skQeu3C36VCiB653MIfrw | This restaurant has the absolute best atmosphere. It starts from the moment you get out of your car and smell the aroma from the smokehouse. From there, it is dark inside which creates a calm homey feeling. The decor is perfect. The food is out of this world! Apple pie moonshine? Just say yes!                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| 3ssvkvS64jO70_WwZ_qejw | Let me first start out by saying that the reason I gave this place two stars is for the fact that even though the food had absolutely no flavour in it it was fresh.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | I ordered an 18 piece Chicken meal that included gravy, coleslaw and fries. The chicken itself was fresh but lacked in the taste department. I got spicy but they seemed to have left out the "spice"?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Coleslaw was very similar to KFC and the gravy was the cheapest most disgusting gravy I've ever tasted. I could have made a better gravy out of Clubhouse Insta.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Fries were okay, nothing special. I paid $47 for the meal but tasted like it should have not costed more than $20.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Ingredients are very bottom shelf. If you prefer bland foods though this could be your spot. I do have to mention that whilst I didn't enjoy it it definitely wasn't greasy with a tremendous amount of oil.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | I understand this is a Canadian chain but add more flavours and maybe not be so cheap on your ingredients and then you could get better reviews.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | What's makes you so different from KFC. Just a copycat in my opinion. Why would people come to your chain when they could get the same caliber of food at KFC?. I will not be back.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| 4hG2j_ibsNblDgqei05U_g | What do you mean Social House is closed?!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | That was my favorite sushi restaurant in Vegas! The food was great, the service was superb, the restaurant looks great and you can get a killer view of the Pirate show outside TI off the balcony.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Where are you going Social House?! Please re-open before I head out in mid October!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| 4hG2j_ibsNblDgqei05U_g | Went to Social House on a recommendation with my girlfriend and she is a vegetarian. Service and good was excellent, we highly recommend, food was fresh and tasty. A must try!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| 5sTFevXhGx01eLT4wF7Urg | Great brunch spot! 4 mimosas for $10.. Can't beat that! Food was great... I had the poached eggs and my friend had an omelette. The fruit that was served was very fresh. The poached eggs had a truffle sauce and a side of artichokes with prosciutto! Delish!! I will be coming back for brunch and I need to try dinner!                                                                                                                                                                                                                                                                                                                                                                                           |
+| 6_JqE5olfHoz1T_m96G85g | we came into town for the final four game but never travel without exploring bars. we love a good cocktail and great bourbon so we were tempted to drive to Chandler to check out a spot we read about on google. we are so glad we did!                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | they seem to have something for everyone.  definitely a lot of inexpensive options but they also have a nice selection of a few limited bottles. worth the drive for anyone that loves whiskey.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | our bartender was also fantastic! super friendly and that's a big thing for us. sometimes we just know what we want and a cheerful server is all it takes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | we'll come back next time we are in AZ.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| 6nbPXEjmBnDtsgM_YNwGjw | This is my cheat meal to the max!  Salty, meaty and oh so good.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | The chicken furikake is battered, deep fried and then glazed in this teriyaki-like sauce.  The batter has a good crunch despite the glaze and it's an addictive dish.  Knowing it's deep fried, I tend to shy away from these types of food, but I can never come to Island Flavor and not order this dish.                                                                                                                                                                                                                                                                                                                                                                                                            |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | The pulehu ribs has a dry rub versus the kalbi ribs more of a saucy seasoning are both salted heavy.  I always have to order my dish light on the sauce and the chef is more than happy to obliged.  I get an option to have brown rice instead of white rice, and then I replace my mac salad with sautéed vegetables.  This place offers a good medium for me.  Even though I'm having a cheat meal, I still get a dose of my healthier options.                                                                                                                                                                                                                                                                     |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | The kalua pig is smokey, light on the salt, and you can't go wrong with shredded pork.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | This is a definite must try if you're craving Hawaiian flavors for plate lunch style.  It's on top of my list of restaurant to eat while in the city of Henderson.  I'm hooked and have cravings that knows no bounds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | They close early on Sundays at 4p.m., so don't come late and disappoint yourself, like many before.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| 769NudnrUxWFtJCGU66A_A | Went here Saturday night with a few friends. Everyone was very pleased with their food + fast service. I ordered the Mac and Cheese with goat cheese and bacon - delicious! The portions are a good size (had enough to take home for the next day!)                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | It gets rowdy after 3am with people looking for a bite after the bars/clubs but it was entertaining . Plus you may have to wait in a line outside if all the tables are taken.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Overall good comfort food ;)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| 769NudnrUxWFtJCGU66A_A | Not bad for a 24 hour breakfast place.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Service- 4/5 nice and friendly                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Atmosphere- 4/5 clean, family oriented diner                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Food- 3.5 chicken waffles are decent and good portion size.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| 7T_2djdY6ldRugsuWb2S-A | Our group meets every Tuesday morning. Breakfast use to come cold and slow. I politely spoke to the server and explain the problem to her. For the last month our 10 to 14 breakfasts are fresh, being served on warm plates with hot coffee. Thanks for the good service.                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| 8Jha7n3EY3_eRIMUOoJ4Zg | This was my first time eating at Zoup. It was a great experience. I had the Chicken Potpie soup with a half Turkey Club sandwich. This soup is their signature soup which is served every day. There are 100+ soup recipes with 12 served daily. They will let you sample any of the soups. The soup was excellent and the sandwich was good. The service was very friendly and the restaurant and bathroom was very clean.                                                                                                                                                                                                                                                                                            |
+| 9HWCSPtMP2tU_cTDsEU1Cw | Awesome! Yummy buns but best of all - absolutely amazing service! Super-friendly (not the plastic smile kind of friendly, but the truly nice one) and fast. Will definitely come back!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| BskUTTscZ1XGa9ev7TlfeQ | Loved this place, great cocktails, great service. We got the gaint pretzel with smoked cheese. The pretzel is huge great for a large party. We both got steaks for dinner. And omg so delicious loved the duck fat potatoes and carrots. Love the style and feel of this place. I will definitely come back on my lunch break the desserts looked so yummy but was way to full to order.                                                                                                                                                                                                                                                                                                                               |
+| EwxhzR-VghhMsRObXLMitw | Came here on a trip and figured I'd stop in to grab some breakfast. This place makes me feel right at home... Good prices and great food!!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| EwxhzR-VghhMsRObXLMitw | The service was ok. Food was bland. I've had several items, all were average. The huevos rancheros were a joke. More of a regular customer type of place, for people who don't want to go find good food.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Ff3FKbwZ-fCT74G1F3_j1g | After a rough night of shopping I was ready to eat my new shoes I was so hungry. I'm in from NYC and am spoiled at home by all the healthy vegan and vegetarian options. As much as I like visiting Charlotte, there's usually more barbecue than vegetarian options.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Then I found crunch bistro. The staff were so nice and proud of their work and their food. Now I see why. Everything was so fresh! I ordered the veggie d-lite wrap and it was fabulous. I wanted three more when I was done.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | I will definitely keep this place at the top of my list when returning to the South Park mall when I visit Charlotte!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | What a gem!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Ff3FKbwZ-fCT74G1F3_j1g | The best food court meal I've ever had! The wraps, salads and flatbreads are made with such fresh and healthy ingredients, it's even hard to call this place a 'food court' restaurant... I think of it as more of a modern cafe.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | The food is delicious! I am a frequent shopper of South Park mall and cannot help but go to Crunch every time. My favorites are the BBQ Santa Fe and Tilapia salads. I can't pick just one! I really like the crunch that the little tortilla strips give the BBQ Santa Fe. And don't even get me started on the delicious cilantro lime vinaigrette on the Tilapia salad.. I could seriously drink that stuff it's so good!! Most of the time, I would be wary to eat fish in a food court but never once have I second guessed Crunch's freshness! I talked to one of their employees and he told me they get all of their produce from a place in Rock Hill, SC. LOVE that they support local farmers and produce!  |
+|                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|                        | Crunch Bistro is a must when stopping by the South Park area. Heck, I'd even go there to eat even if I wasn't shopping in the mall! I'm obsessed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
++------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+(Output limit exceeded, 25 of 1000000 total rows shown)
+
+
+
+
+	Part 2
++------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| business_id            | name                       | value                                                                                                                                                           |
++------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 1AxEmgv8Dsr3iU9Aa40jPw | BusinessParking            | {"garage": false, "street": false, "validated": false, "lot": true, "valet": false}                                                                             |
+| 1AxEmgv8Dsr3iU9Aa40jPw | HasTV                      | 1                                                                                                                                                               |
+| 1AxEmgv8Dsr3iU9Aa40jPw | CoatCheck                  | 0                                                                                                                                                               |
+| 1AxEmgv8Dsr3iU9Aa40jPw | NoiseLevel                 | average                                                                                                                                                         |
+| 1AxEmgv8Dsr3iU9Aa40jPw | OutdoorSeating             | 1                                                                                                                                                               |
+| 1AxEmgv8Dsr3iU9Aa40jPw | BusinessAcceptsCreditCards | 1                                                                                                                                                               |
+| 1AxEmgv8Dsr3iU9Aa40jPw | RestaurantsPriceRange2     | 2                                                                                                                                                               |
+| 1AxEmgv8Dsr3iU9Aa40jPw | Music                      | {"dj": false, "background_music": false, "no_music": false, "karaoke": false, "live": true, "video": false, "jukebox": false}                                   |
+| 1AxEmgv8Dsr3iU9Aa40jPw | BikeParking                | 1                                                                                                                                                               |
+| 1AxEmgv8Dsr3iU9Aa40jPw | Smoking                    | outdoor                                                                                                                                                         |
+| 1AxEmgv8Dsr3iU9Aa40jPw | Ambience                   | {"romantic": false, "intimate": false, "classy": false, "hipster": false, "divey": false, "touristy": false, "trendy": false, "upscale": false, "casual": true} |
+| 1AxEmgv8Dsr3iU9Aa40jPw | BestNights                 | {"monday": false, "tuesday": false, "friday": true, "wednesday": true, "thursday": false, "sunday": false, "saturday": true}                                    |
+| 1AxEmgv8Dsr3iU9Aa40jPw | RestaurantsGoodForGroups   | 1                                                                                                                                                               |
+| 1AxEmgv8Dsr3iU9Aa40jPw | HappyHour                  | 1                                                                                                                                                               |
+| 1AxEmgv8Dsr3iU9Aa40jPw | GoodForDancing             | 1                                                                                                                                                               |
+| 1AxEmgv8Dsr3iU9Aa40jPw | Alcohol                    | full_bar                                                                                                                                                        |
+| -2q4dnUw0gGJniGW2aPamQ | GoodForMeal                | {"dessert": false, "latenight": false, "lunch": false, "dinner": false, "breakfast": false, "brunch": false}                                                    |
+| -2q4dnUw0gGJniGW2aPamQ | RestaurantsGoodForGroups   | 1                                                                                                                                                               |
+| -2q4dnUw0gGJniGW2aPamQ | NoiseLevel                 | quiet                                                                                                                                                           |
+| 01xXe2m_z048W5gcBFpoJA | RestaurantsTableService    | 0                                                                                                                                                               |
+| 01xXe2m_z048W5gcBFpoJA | GoodForMeal                | {"dessert": false, "latenight": false, "lunch": true, "dinner": true, "breakfast": false, "brunch": false}                                                      |
+| 01xXe2m_z048W5gcBFpoJA | Alcohol                    | none                                                                                                                                                            |
+| 01xXe2m_z048W5gcBFpoJA | Caters                     | 0                                                                                                                                                               |
+| 01xXe2m_z048W5gcBFpoJA | HasTV                      | 0                                                                                                                                                               |
+| 01xXe2m_z048W5gcBFpoJA | RestaurantsGoodForGroups   | 1                                                                                                                                                               |
++------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+(Output limit exceeded, 25 of 552 total rows shown)
+         
+iv. Provide the SQL code you used to create your final dataset:
+
+	Part 1
+
+SELECT review.business_id
+
+, review.text
+
+FROM review INNER JOIN category
+
+ON review.business_id = category.business_id
+
+INNER JOIN business
+
+ON review.business_id = category.business_id
+
+WHERE category.category = "Restaurants"
+
+AND business.review_count > 0
+
+	Part 2
+
+SELECT attribute.business_id
+
+, attribute.name
+
+, attribute.value
+
+FROM attribute INNER JOIN category
+
+ON attribute.business_id = category.business_id
+
+AND category.category = "Restaurants"
+
+INNER JOIN business
+
+ON business.id = category.business_id
+
+AND business.review_count > 0
+
